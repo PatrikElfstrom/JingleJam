@@ -1,10 +1,19 @@
-html, body {
+html,
+body {
     background: url(./background.png) no-repeat center center;
     background-size: cover;
     min-width: 100%;
     min-height: 100vh;
+    height: min-content;
     font-size: 16px;
+
+    #root {
+        height: min-content;
+        min-height: 100vh;
+    }
     .home {
+        height: min-content;
+        min-height: 100vh;
         display: flex;
         flex-direction: column;
         .controls {
@@ -38,7 +47,7 @@ html, body {
             }
         }
         header {
-            padding: 30px 0;
+            padding-top: 20px;
             .header-container {
                 width: 100%;
                 padding: 0 15px;
@@ -52,11 +61,11 @@ html, body {
                     height: 100px;
                     width: 100%;
                     object-fit: contain;
-                    margin-bottom: 15px;
                 }
                 h1 {
                     display: inline;
                     padding: 2px 15px;
+                    margin: 20px 0;
                     color: #081633;
                     background: #ffffff;
                     font-size: 1.5rem;
@@ -78,6 +87,7 @@ html, body {
 
                     @media only screen and (min-width: 450px) {
                         padding: 2px 30px;
+                        margin: 40px 0;
                         flex-direction: row;
                         font-size: 2rem;
                         display: inline-block;
@@ -136,17 +146,50 @@ html, body {
                     }
                 }
             }
+
+            @media only screen and (min-width: 450px) {
+                padding-top: 40px;
+            }
+
+            @media only screen and (min-width: 768px) {
+                padding: 40px;
+            }
         }
         section.schedule {
-            padding: 0 15px;
+            padding: 0 10px 10px;
+            min-height: fit-content;
             flex-grow: 1;
             display: grid;
-            grid-template-columns: 55px repeat(7, 1fr);
+            grid-template-columns: 55px calc(80vw - 55px) repeat(7, 80vw);
             grid-template-rows: 55px repeat(4, 1fr);
             grid-gap: 10px;
             box-sizing: border-box;
-            margin-bottom: 50px;
             position: relative;
+            scroll-snap-type: x mandatory;
+            overflow: auto;
+
+            // Don't snap to the first day, we'll snap to the time column instead
+            > *:not(._1) {
+                scroll-snap-align: center;
+            }
+
+            @media only screen and (min-width: 470px) {
+                grid-template-columns: 55px calc(50vw - 55px) repeat(7, 50vw);
+            }
+
+            @media only screen and (min-width: 768px) {
+                scroll-snap-type: none;
+                grid-template-columns: 55px calc(40vw - 55px) repeat(7, 40vw);
+            }
+
+            @media only screen and (min-width: 1024px) {
+                grid-template-columns: 55px calc(20vw - 55px) repeat(7, 20vw);
+            }
+
+            @media only screen and (min-width: 1200px) {
+                grid-template-columns: 55px repeat(7, 1fr);
+            }
+
             .time {
                 background: #ffffff;
                 grid-column: 1;
@@ -156,11 +199,12 @@ html, body {
                 justify-content: space-between;
                 h1 {
                     margin: 0;
-                    transform: rotate(-90deg);
+                    writing-mode: vertical-lr;
                     color: #aab2d6;
                     font-size: 1.5rem;
                 }
-                h3, h4 {
+                h3,
+                h4 {
                     margin: 5px 0;
                     font-size: 1.3rem;
                     color: #13182e;
@@ -235,14 +279,15 @@ html, body {
                 cursor: pointer;
                 padding: 10px;
                 text-align: center;
-                transition: .2s ease;
+                transition: 0.2s ease;
                 h1 {
                     margin: 0;
                     font-size: 2rem;
                     line-height: 1.7rem;
                     margin-bottom: 15px;
                 }
-                h4, h5 {
+                h4,
+                h5 {
                     margin: 0;
                     font-size: 1.5rem;
                     line-height: 1.4rem;
@@ -274,7 +319,10 @@ html, body {
                     background: #005491;
                     border: 4px solid #4593d1;
                     color: #ffffff;
-                    h1, h4, h5, h3 {
+                    h1,
+                    h4,
+                    h5,
+                    h3 {
                         text-shadow: 0 0 7px #000000;
                     }
                 }
@@ -285,18 +333,29 @@ html, body {
                 &.pink {
                     border: 4px solid #9a0a2e;
                     color: #ffffff;
-                    background: rgb(166,17,59);
-                    background: linear-gradient(0deg, rgba(166,17,59,1) 0%, rgba(220,23,79,1) 100%);
+                    background: rgb(166, 17, 59);
+                    background: linear-gradient(
+                        0deg,
+                        rgba(166, 17, 59, 1) 0%,
+                        rgba(220, 23, 79, 1) 100%
+                    );
                     &.duration_4 {
-                        background: rgb(166,17,59);
-                        background: linear-gradient(0deg, rgba(166,17,59,1) 0%, rgba(220,23,79,1) 50%, rgba(166, 17, 59, 1) 100%);
+                        background: rgb(166, 17, 59);
+                        background: linear-gradient(
+                            0deg,
+                            rgba(166, 17, 59, 1) 0%,
+                            rgba(220, 23, 79, 1) 50%,
+                            rgba(166, 17, 59, 1) 100%
+                        );
                     }
-                    h1, h4, h5, h3 {
+                    h1,
+                    h4,
+                    h5,
+                    h3 {
                         text-shadow: 0 0 7px #000000;
                     }
                 }
             }
-            pointer-events: none;
             & > .stream {
                 pointer-events: auto;
             }
@@ -335,7 +394,7 @@ html, body {
             transform: translate(-50%, -50%);
             position: absolute;
             z-index: 101;
-            box-shadow: 0 0 25px 0 rgba(0,0,0,0.5);
+            box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: row;
             &.blue {
@@ -346,8 +405,13 @@ html, body {
             &.pink {
                 border: 4px solid #9a0a2e;
                 color: #ffffff;
-                background: rgb(166,17,59);
-                background: linear-gradient(0deg, rgba(166,17,59,1) 0%, rgba(220,23,79,1) 50%, rgba(166, 17, 59, 1) 100%);
+                background: rgb(166, 17, 59);
+                background: linear-gradient(
+                    0deg,
+                    rgba(166, 17, 59, 1) 0%,
+                    rgba(220, 23, 79, 1) 50%,
+                    rgba(166, 17, 59, 1) 100%
+                );
             }
             &.white {
                 background: #ffffff;
@@ -367,7 +431,9 @@ html, body {
                     line-height: 3.5rem;
                     margin-bottom: 30px;
                 }
-                h3, h4, h5 {
+                h3,
+                h4,
+                h5 {
                     font-size: 2rem;
                     margin: 0;
                     line-height: 1.8rem;
@@ -387,7 +453,7 @@ html, body {
                         height: 50px;
                         width: 50px;
                         border-radius: 50%;
-                        background: rgba(255,255,255,0.2);
+                        background: rgba(255, 255, 255, 0.2);
                         flex-shrink: 0;
                         margin: 0 5px;
                         position: relative;
@@ -406,7 +472,7 @@ html, body {
                             left: 50%;
                             transform: translate(-50%, 0);
                             background: #ffffff;
-                            color: rgb(166,17,59);
+                            color: rgb(166, 17, 59);
                             padding: 0 10px;
                             height: 20px;
                             border-radius: 10px;
@@ -414,7 +480,7 @@ html, body {
                             justify-content: center;
                             align-items: center;
                             font-size: 1rem;
-                            transition: .2s ease;
+                            transition: 0.2s ease;
                         }
                         &:hover {
                             .tooltip {
@@ -428,7 +494,7 @@ html, body {
                 .details {
                     .starring {
                         .yog {
-                            background: rgba(0,0,0,.1);
+                            background: rgba(0, 0, 0, 0.1);
                             .tooltip {
                                 background: #064372;
                                 color: #ffffff;
@@ -519,7 +585,7 @@ html, body {
                             border: 2px solid #ffffff;
                             box-sizing: border-box;
                             cursor: pointer;
-                            transition: .2s ease;
+                            transition: 0.2s ease;
                             &:first-child {
                                 margin-right: 5px;
                             }
@@ -529,11 +595,13 @@ html, body {
                             svg {
                                 margin-left: 5px;
                             }
-                            &.twitch:hover, &.twitch.active {
+                            &.twitch:hover,
+                            &.twitch.active {
                                 background: #6441a5;
                                 color: #ffffff;
                             }
-                            &.youtube:hover, &.youtube.active {
+                            &.youtube:hover,
+                            &.youtube.active {
                                 color: #ffffff;
                                 background: #c4302b;
                             }
