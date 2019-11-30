@@ -64,8 +64,10 @@ class Home extends Component {
         return(
             <div className="home">
                 <header>
-                    <img className="logo" src={logoWhite} alt="Jingle Jam 2019 Logo" />
-                    <h1>Stream Schedule <span></span> {this.state.streams.meta.week}<sup>{this.state.streams.meta.week === 1 ? "st" : this.state.streams.meta.week === 2 ? "nd" : this.state.streams.meta.week === 3 ? "rd" : "th"}</sup> week</h1>
+                    <div className="header-container">
+                        <img className="logo" src={logoWhite} alt="Jingle Jam 2019 Logo" />
+                        <h1>Stream Schedule <span></span> {this.state.streams.meta.week}<sup>{this.state.streams.meta.week === 1 ? "st" : this.state.streams.meta.week === 2 ? "nd" : this.state.streams.meta.week === 3 ? "rd" : "th"}</sup> week</h1>
+                    </div>
                 </header>
                 <Schedule streams={this.state.streams} week={this.state.week} />
                 <div className="controls">
@@ -248,8 +250,10 @@ class Schedule extends Component {
     render(){
         return(
             <section className="schedule">
-                <div className={`liveTime ${this.state.live ? "active" : null}`} style={{top: this.state.livePosition}}></div>
-                <article className="time day">{this.state.tz}</article>
+                <article className="time day">
+                    <div className={`liveTime ${this.state.live ? "active" : null}`} style={{top: this.state.livePosition}}></div>
+                    {this.state.tz}
+                </article>
                 {
                     this.state.times !== null ?
                     this.state.times.map((time, i) => {
