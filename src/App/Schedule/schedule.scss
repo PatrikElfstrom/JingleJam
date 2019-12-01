@@ -359,10 +359,12 @@ body {
             & > .stream {
                 pointer-events: auto;
             }
-            &:hover > .stream {
-                opacity: 0.7;
-                &:hover {
-                    opacity: 1;
+            @media (hover: hover) {
+                &:hover > .stream {
+                    opacity: 0.7;
+                    &:hover {
+                        opacity: 1;
+                    }
                 }
             }
         }
