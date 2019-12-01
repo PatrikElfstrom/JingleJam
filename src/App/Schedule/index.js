@@ -8,6 +8,7 @@ import creators from './data/creators.json';
 import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
 import {FaTwitch, FaYoutube} from 'react-icons/fa';
 import {CloseButton} from '../CloseButton';
+import { NotificationButton } from '../NotificationButton';
 
 class Home extends Component {
     constructor(){
@@ -365,6 +366,7 @@ class Stream extends Component {
     render(){
         return(
             <article onClick={this.expandStream} className={`stream _${this.props.startHour} _${this.props.date%7} duration_${this.props.duration} ${this.props.style}`}>
+                <NotificationButton />
                 {this.props.pretitle !== undefined ? <h3>{this.props.pretitle}</h3> : null}
                 <h1>{this.props.title}</h1>
                 <h4>{this.props.subtitle}</h4>
