@@ -390,14 +390,7 @@ body {
             opacity: 0.6;
         }
         .content {
-            // width: 1200px;
-            // height: 425px;
             margin: 0 5%;
-            // top: 50%;
-            // left: 50%;
-            // transform: translate(-50%, -50%);
-            // position: absolute;
-            // z-index: 101;
             box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: row;
@@ -461,14 +454,8 @@ body {
                     }
                 }
                 .starring {
-                    // height: 100px;
-                    // max-width: 100%;
-                    // overflow-x: scroll;
                     position: relative;
                     margin-top: 25px;
-                    // padding: 0 10px;
-                    // overflow-x: auto;
-                    // overflow-y: hidden;
 
                     .starring-container {
                         display: flex;
