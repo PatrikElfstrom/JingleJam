@@ -574,6 +574,11 @@ body {
                 .live {
                     display: flex;
                     flex-direction: column;
+                    width: 100%;
+
+                    > iframe {
+                        width: 100%;
+                    }
                     h1 {
                         margin: 0;
                         text-align: right;
