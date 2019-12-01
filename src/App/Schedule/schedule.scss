@@ -400,6 +400,7 @@ body {
             align-items: center;
             overflow-y: scroll;
             max-height: 100%;
+            position: relative;
 
             &.blue {
                 background: #005491;
