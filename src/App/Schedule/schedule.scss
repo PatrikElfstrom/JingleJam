@@ -278,6 +278,7 @@ html, body {
             box-shadow: 0 0 25px 0 rgba(0,0,0,0.5);
             display: flex;
             flex-direction: row;
+            position: relative;
             &.blue {
                 background: #005491;
                 border: 4px solid #4593d1;

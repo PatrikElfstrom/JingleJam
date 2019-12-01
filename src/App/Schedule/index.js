@@ -7,6 +7,7 @@ import streams from './data/streams.json';
 import creators from './data/creators.json';
 import {FiChevronLeft, FiChevronRight} from 'react-icons/fi';
 import {FaTwitch, FaYoutube} from 'react-icons/fa';
+import {CloseButton} from '../CloseButton';
 
 class Home extends Component {
     constructor(){
@@ -461,6 +462,7 @@ class ExpandedStream extends Component {
             <section className="expanded">
                 <div className="bg" onClick={this.close}></div>
                 <article className={`content ${this.state.stream.style}`}>
+                    <CloseButton onClick={this.close}/>
                     <div className="details">
                         {this.state.stream.title !== undefined ? <h1>{this.state.stream.title}</h1> : null}
                         {this.state.stream.pretitle !== undefined ? <h3>{this.state.stream.pretitle}</h3> : null}
