@@ -469,20 +469,22 @@ class ExpandedStream extends Component {
                         {this.state.stream.subtitle !== undefined ? <h4>{this.state.stream.subtitle}</h4> : null}
                         {this.state.stream.subtitle2 !== undefined ? <h5>{this.state.stream.subtitle2}</h5> : null}
                         <div className="starring">
-                            {
-                                this.state.stream.starring === undefined ? null :
-                                this.state.stream.starring.map((yog, i) => {
-                                    return (
-                                        <div className="yog" key={i}>
-                                            {
-                                                creators[yog] === undefined ? null :
-                                                <img src={creators[yog].profilePicture} alt={`${yog} profile`} />
-                                            }
-                                            <div className="tooltip">{creators[yog] === undefined ? null : creators[yog].displayName}</div>
-                                        </div>
-                                    )
-                                })
-                            }
+                            <div className="starring-container">
+                                {
+                                    this.state.stream.starring === undefined ? null :
+                                    this.state.stream.starring.map((yog, i) => {
+                                        return (
+                                            <div className="yog" key={i}>
+                                                {
+                                                    creators[yog] === undefined ? null :
+                                                    <img src={creators[yog].profilePicture} alt={`${yog} profile`} />
+                                                }
+                                                <div className="tooltip">{creators[yog] === undefined ? null : creators[yog].displayName}</div>
+                                            </div>
+                                        )
+                                    })
+                                }
+                            </div>
                         </div>
                     </div>
                     <div className="vods">

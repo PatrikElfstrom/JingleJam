@@ -368,7 +368,7 @@ body {
         }
     }
     .expanded {
-        position: absolute;
+        position: fixed;
         z-index: 100;
         height: 100vh;
         width: 100%;
@@ -376,27 +376,36 @@ body {
         -webkit-backdrop-filter: blur(10px);
         top: 0;
         left: 0;
+        display: flex;
+        place-items: center;
+        place-content: center;
         .bg {
             position: absolute;
             width: 100%;
             height: 100%;
             left: 0;
             top: 0;
-            z-index: 100;
+            z-index: -1;
             background: #000000;
             opacity: 0.6;
         }
         .content {
-            width: 1200px;
-            height: 425px;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            position: absolute;
-            z-index: 101;
+            // width: 1200px;
+            // height: 425px;
+            margin: 0 5%;
+            // top: 50%;
+            // left: 50%;
+            // transform: translate(-50%, -50%);
+            // position: absolute;
+            // z-index: 101;
             box-shadow: 0 0 25px 0 rgba(0, 0, 0, 0.5);
             display: flex;
             flex-direction: row;
+            flex-wrap: wrap;
+            align-items: center;
+            overflow-y: scroll;
+            max-height: 100%;
+
             &.blue {
                 background: #005491;
                 border: 4px solid #4593d1;
@@ -419,43 +428,62 @@ body {
             }
             .details {
                 height: 100%;
-                width: 50%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
                 box-sizing: border-box;
                 padding: 25px;
+                flex-basis: 100%;
+                @media only screen and (min-width: 1024px) {
+                    flex-basis: 50%;
+                }
                 h1 {
-                    font-size: 4rem;
+                    font-size: 2rem;
                     margin: 0;
-                    line-height: 3.5rem;
+                    line-height: 1.8rem;
                     margin-bottom: 30px;
+
+                    @media only screen and (min-width: 768px) {
+                        font-size: 4rem;
+                        line-height: 3.5rem;
+                    }
                 }
                 h3,
                 h4,
                 h5 {
-                    font-size: 2rem;
+                    font-size: 1rem;
                     margin: 0;
-                    line-height: 1.8rem;
+                    line-height: 1rem;
+
+                    @media only screen and (min-width: 768px) {
+                        font-size: 2rem;
+                        line-height: 1.8rem;
+                    }
                 }
                 .starring {
-                    height: 100px;
-                    max-width: 100%;
-                    overflow-x: scroll;
+                    // height: 100px;
+                    // max-width: 100%;
+                    // overflow-x: scroll;
                     position: relative;
                     margin-top: 25px;
-                    display: flex;
-                    flex-direction: row;
-                    padding: 0 10px;
-                    overflow-x: auto;
-                    overflow-y: hidden;
+                    // padding: 0 10px;
+                    // overflow-x: auto;
+                    // overflow-y: hidden;
+
+                    .starring-container {
+                        display: flex;
+                        flex-direction: row;
+                        flex-flow: wrap;
+                        margin: -5px;
+                    }
+
                     .yog {
                         height: 50px;
                         width: 50px;
                         border-radius: 50%;
                         background: rgba(255, 255, 255, 0.2);
                         flex-shrink: 0;
-                        margin: 0 5px;
+                        margin: 5px;
                         position: relative;
                         cursor: pointer;
                         img {
@@ -516,7 +544,10 @@ body {
             }
             .vods {
                 height: 100%;
-                width: 50%;
+                flex-basis: 100%;
+                @media only screen and (min-width: 1024px) {
+                    flex-basis: 50%;
+                }
                 display: flex;
                 align-items: center;
                 padding: 25px;
@@ -532,6 +563,7 @@ body {
                         margin: 0;
                         font-size: 4rem;
                         line-height: 4rem;
+                        white-space: nowrap;
                         span {
                             position: relative;
                             &::after {
@@ -565,6 +597,11 @@ body {
                 .allvods {
                     display: flex;
                     flex-direction: column;
+                    width: 100%;
+
+                    > iframe {
+                        width: 100%;
+                    }
                     ul {
                         list-style: none;
                         display: flex;
